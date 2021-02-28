@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+user=''
+  constructor(private router: Router){
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
-}
+  ngOnInit(): void {
+    this.user = JSON.stringify(localStorage.getItem('email'))
+  }
+logout() {
+  localStorage.removeItem('email')
+  this.router.navigate(['/login']);
+
+}show(){
+this.router.navigate(['/home/show'])
+}}

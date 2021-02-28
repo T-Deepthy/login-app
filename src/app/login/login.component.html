@@ -1,39 +1,31 @@
-<div fxLayout="row" fxLayoutWrap="wrap">
-    <!-- column -->
-    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-        <mat-card>
-            <mat-card-content>
-                <!-- Row -->
-                <div fxLayout="row" fxLayoutWrap="wrap">
-                    <!-- column -->
-                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
-                        <div class="contains">
-                            <div class="login-box">
-                                <mat-card class="mat-elevation-z2" style="background-color: #26C6DA">
-                                    <mat-card-header style="background-color: teal; color: whitesmoke;">Login</mat-card-header>
-                                    <mat-card-content>
-                                        <form class="form my-2 my-lg-0" #loginForm="ngForm" (ngSubmit)="login()">
-                                            <mat-form-field>
-                                                <input type="text" class="text-white" placeholder="Username" name="username" required matInput/>
-                                            </mat-form-field>
-                                            <mat-form-field>
-                                                <input type="password" placeholder="Password" name="password" required matInput/>
-                                            </mat-form-field>
-                                            <button type="submit" mat-raised-button class="btn btn-primary btn-sm btn-block" [disabled]="!loginForm.valid">
-                                                Submit
-                                              </button>
+<div class="card m-3">
+    <h5 class="card-header">Login</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-                                        </form>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-
-                        </div>
-                        <br/><br/>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
+
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
     </div>
-    <!-- column -->
 </div>
