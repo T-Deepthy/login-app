@@ -1,10 +1,6 @@
-<p>show-api works!</p>
+<p>show-api works!</p><button (click)="back()">Back</button>
 <h1>Registered Employees</h1>
-<div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-        <span class="sr-only" id="loading">Loading...</span>
-    </div>
-</div>
+
 <table class="table" id='tab'>
     <thead>
         <tr>
@@ -15,8 +11,31 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let e of lis;">
-            <td>{{e}}</td>
+        <tr *ngFor="let list of lists">
+            <td>{{list.name}}</td>
+            <td>{{list.position}}</td>
+            <td>{{list.office}}</td>
+            <td>{{list.salary}}</td>
+        </tr>
+    </tbody>
+</table>
+<h1>User Table Api List</h1>
+<table class="table" id='tab'>
+    <thead>
+        <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">ID</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of userData">
+            <td>{{list.userId}}</td>
+            <td>{{list.id}}</td>
+            <td>
+                <input type="checkbox" [(ngModel)]="list.completed" [disabled]=true/></td>
+            <td>{{list.title}}</td>
         </tr>
     </tbody>
 </table>
